@@ -36,6 +36,7 @@ public class SpringDataApplication implements CommandLineRunner {
 				cargoService.iniciar(scanner);
 			} else {
 				this.system = false;
+				System.out.println("Encerrado!");
 			}
 		}
 	}
