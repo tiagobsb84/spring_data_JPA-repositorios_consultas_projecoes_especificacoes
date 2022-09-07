@@ -157,9 +157,14 @@ public class FuncionarioService {
 		System.out.println("Qual página deseja visualizar?");
 		Integer page = scanner.nextInt();
 		
-		Pageable pageable = PageRequest.of(page, 5, Sort.unsorted());
-		
+		Pageable pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.ASC, "nome"));
 		Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
+		
+		System.out.println(funcionarios);
+		//Traz o numero da pagina atual.
+		System.out.println("Pagina Atual " + funcionarios.getNumber());
+		//Traz o total de paginas
+		System.out.println("Total elementos " + funcionarios.getTotalElements());
 		funcionarios.forEach(funcionario -> System.out.println(funcionario));
 	}
 	
