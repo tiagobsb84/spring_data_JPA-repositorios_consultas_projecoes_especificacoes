@@ -7,16 +7,32 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.springdata.service.CargoService;
+import com.springdata.service.FuncionarioService;
+import com.springdata.service.RelatorioService;
+import com.springdata.service.UnidadeTrabalhoService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 	
-	private CargoService cargoService;
-	
 	private Boolean system = true;
+
+	private final CargoService cargoService;
+
+	private final FuncionarioService funcionarioService;
+
+	private final UnidadeTrabalhoService unidadeTrabalhoService;
 	
-	public SpringDataApplication(CargoService cargoService) {
+	private final RelatorioService relatorioService;
+
+	public SpringDataApplication(CargoService cargoService,
+			FuncionarioService funcionarioService, 
+			UnidadeTrabalhoService unidadeTrabalhoService,
+			RelatorioService relatorioService
+			) {
 		this.cargoService = cargoService;
+		this.funcionarioService = funcionarioService;
+		this.unidadeTrabalhoService = unidadeTrabalhoService;
+		this.relatorioService = relatorioService;
 	}
 
 	public static void main(String[] args) {
@@ -26,17 +42,34 @@ public class SpringDataApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Scanner scanner = new Scanner(System.in);
-		while(system) {
-			System.out.println("Qual acao você vai executar?");
+
+		while (system) {
+			System.out.println("Qual função deseja executar?");
 			System.out.println("0 - Sair");
-			System.out.println("1 - Cargo");
+			System.out.println("1 - Funcionario");
+			System.out.println("2 - Cargo");
+			System.out.println("3 - Unidade");
+			System.out.println("4 - relatorio por nome");
 			
-			int action = scanner.nextInt();
-			if(action == 1) {
-				cargoService.iniciar(scanner);
-			} else {
-				this.system = false;
-				System.out.println("Encerrado!");
+			Integer function = scanner.nextInt();
+
+			switch (function) {
+				case 1:
+					cargoService.iniciar(scanner);
+					break;
+				case 2:
+					funcionarioService.inicial(scanner);
+					break;
+				case 3:
+					unidadeTrabalhoService.inicial(scanner);
+					break;
+				case 4:
+					relatorioService.inicial(scanner);
+					break;
+				default:
+					System.out.println("Processo encerrado");
+					system = false;
+					break;
 			}
 		}
 	}
