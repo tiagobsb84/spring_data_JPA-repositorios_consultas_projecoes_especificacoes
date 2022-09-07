@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.springdata.service.CargoService;
 import com.springdata.service.FuncionarioService;
+import com.springdata.service.RelatorioFuncionarioDinamico;
 import com.springdata.service.RelatorioService;
 import com.springdata.service.UnidadeTrabalhoService;
 
@@ -23,16 +24,20 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final UnidadeTrabalhoService unidadeTrabalhoService;
 	
 	private final RelatorioService relatorioService;
+	
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
 	public SpringDataApplication(CargoService cargoService,
 			FuncionarioService funcionarioService, 
 			UnidadeTrabalhoService unidadeTrabalhoService,
-			RelatorioService relatorioService
+			RelatorioService relatorioService,
+			RelatorioFuncionarioDinamico relatorioFuncionarioDinamico
 			) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
 		this.relatorioService = relatorioService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 
 	public static void main(String[] args) {
@@ -50,6 +55,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Cargo");
 			System.out.println("3 - Unidade");
 			System.out.println("4 - relatorio por nome");
+			System.out.println("5 - relatorio dinamico");
 			
 			Integer function = scanner.nextInt();
 
@@ -65,6 +71,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 4:
 					relatorioService.inicial(scanner);
+					break;
+				case 5:
+					relatorioFuncionarioDinamico.inicial(scanner);
 					break;
 				default:
 					System.out.println("Processo encerrado");

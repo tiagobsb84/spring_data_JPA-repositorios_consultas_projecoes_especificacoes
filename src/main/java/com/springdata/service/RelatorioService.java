@@ -31,6 +31,7 @@ public class RelatorioService {
 			System.out.println("1 - Consultar por funcionário por nome");
 			System.out.println("2 - Consultar por funcionário por nome, salario e data");
 			System.out.println("3 - Consultar por funcionário pela data de contratação");
+			System.out.println("4 - Consultar por funcionário pelo salario");
 			
 			int action = scanner.nextInt();
 			

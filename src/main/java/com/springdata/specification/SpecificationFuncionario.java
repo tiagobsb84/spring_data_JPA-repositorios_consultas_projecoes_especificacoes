@@ -25,7 +25,7 @@ public class SpecificationFuncionario {
 	
 	public static Specification<Funcionario> dataContratacao(LocalDate data) {
 		return (root, criteriaQuery, criteriaBuilder) -> 
-			criteriaBuilder.greaterThan(root.get("nome"), data);
+			criteriaBuilder.greaterThan(root.get("dataContracao"), data);
 	}
 	
 	
